@@ -17,8 +17,7 @@ app.set((req, res, next) => {
 })
 
 // Routes
-// app.use('/api/list', require('./routes/list'));
-// app.use('/api/content', require('./routes/content'));
+app.use('/api/user', require('./routes/users'));
 
 // Public
 app.use(express.static(path.join(__dirname, 'public')));
