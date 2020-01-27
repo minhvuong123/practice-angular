@@ -43,6 +43,28 @@ Router.post('/', async (req, res) => {
   }
 })
 
+Router.post('/getUser', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      handleError(res, { code: 400, msg: "Invalid values" });
+      return;
+    }
+
+    const user = await UserModel.getAll([], {where: {email, password}});
+    console.log(user);
+    
+
+    handleSuccess(res, { user });
+  } catch (err) {
+    if (err.msg)
+      handleError(res, { code: err.code, msg: err.msg });
+    else
+      handleError(res, { code: err.code, msg: "Server is error" });
+  }
+})
+
 Router.post('/add', async (req, res) => {
   try {
     const { ...userRequest } = req.body;
@@ -76,6 +98,32 @@ Router.post('/add', async (req, res) => {
 Router.delete('/delete', async (req, res) => {
   try {
     const { id } = req.body;
+    if (!id) {
+      handleError(res, { code: 400, msg: "Invalid values" });
+      return;
+    }
+
+    const result = await UserModel.delete({ where: { id } });
+
+    // result = 1 is success
+    // result = 0 is fail
+    if (!result) {
+      handleError(res, { code: 400, msg: "Delete is failed" });
+      return;
+    }
+
+    handleSuccess(res, { msg: 'Delete is success' });
+  } catch (err) {
+    if (err.msg)
+      handleError(res, { code: err.code, msg: err.msg });
+    else
+      handleError(res, { code: err.code, msg: "Server is error" });
+  }
+})
+
+Router.delete('/delete/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
     if (!id) {
       handleError(res, { code: 400, msg: "Invalid values" });
       return;
