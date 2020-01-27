@@ -1,17 +1,19 @@
 <mat-card class="sign-in-form">
-  <form>
+  <form [formGroup] = "signInForm" (ngSubmit) = "onSubmit()">
     <mat-form-field class="full-width">
-      <input matInput placeholder="Email">
+      <input matInput formControlName="email" placeholder="Email"/>
+      <mat-error *ngIf="signInForm.controls.email.invalid">{{getErrorMessage('email')}}</mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <input matInput placeholder="Password">
+      <input matInput formControlName="password" type="password" placeholder="Password">
+      <mat-error *ngIf="signInForm.controls.password.invalid">{{getErrorMessage('password')}}</mat-error>
     </mat-form-field>
 
     <div class="btn-sign-in"> 
-      <button mat-raised-button >Sign in</button>
+      <button mat-raised-button type="submit" >Sign in</button>
     </div>
    
-    <a href="" class="not-acount">Not acount yet !</a>
+    <a (click) = "redirect()" class="not-acount" style="text-decoration: underline; cursor: pointer;">Not acount yet !</a>
   </form>
 </mat-card>

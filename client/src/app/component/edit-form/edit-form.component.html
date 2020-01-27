@@ -1,17 +1,17 @@
-<mat-card class="sign-up-form">
-  <form [formGroup] = "signUpForm" (ngSubmit) = "onSubmit()">
+<mat-card class="edit-form">
+  <form [formGroup] = "editForm" (ngSubmit) = "updateUser()">
     <mat-grid-list cols="2" rowHeight="3:1">
       <mat-grid-tile>
         <mat-form-field>
           <input matInput formControlName="firstName" placeholder="First name">
-          <mat-error *ngIf="signUpForm.controls.firstName.invalid">{{getErrorMessage('firstName')}}</mat-error>
+          <mat-error *ngIf="editForm.controls.firstName.invalid">{{getErrorMessage('firstName')}}</mat-error>
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile>
         <mat-form-field>
           <input matInput formControlName="lastName" placeholder="Last name">
-          <mat-error *ngIf="signUpForm.controls.lastName.invalid">{{getErrorMessage('LastName')}}</mat-error>
+          <mat-error *ngIf="editForm.controls.lastName.invalid">{{getErrorMessage('LastName')}}</mat-error>
         </mat-form-field>
       </mat-grid-tile>
     </mat-grid-list>
@@ -20,20 +20,20 @@
       <mat-grid-tile>
         <mat-form-field class="full-width">
           <input matInput formControlName="email" placeholder="Email">
-          <mat-error *ngIf="signUpForm.controls.email.invalid">{{getErrorMessage('email')}}</mat-error>
+          <mat-error *ngIf="editForm.controls.email.invalid">{{getErrorMessage('email')}}</mat-error>
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile>
         <mat-form-field class="full-width">
           <input matInput formControlName="password" type="password" placeholder="Password">
-          <mat-error *ngIf="signUpForm.controls.password.invalid">{{getErrorMessage('password')}}</mat-error>
+          <mat-error *ngIf="editForm.controls.password.invalid">{{getErrorMessage('password')}}</mat-error>
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile>
         <div class="btn-sign-up"> 
-          <button mat-raised-button type="submit" >Sign up</button>
+          <button mat-raised-button type="submit" >Update</button>
         </div>
       </mat-grid-tile>
     </mat-grid-list>

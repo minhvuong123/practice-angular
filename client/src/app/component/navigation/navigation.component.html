@@ -1,7 +1,11 @@
 <mat-card class="navigation">
   <button routerLink="/home" routerLinkActive="active" mat-button>Home</button>
 
-  <button routerLink="/sign-in" routerLinkActive="active" mat-button>Sign in</button>
+  <button *ngIf="!this.variableService.loginStatus" routerLink="/sign-in" routerLinkActive="active" mat-button>Sign in</button>
 
-  <button routerLink="/sign-up" routerLinkActive="active" mat-button>Sign up</button>
+  <button routerLink="/sign-up" routerLinkActive="active" mat-button>
+    {{!this.variableService.loginStatus ? 'Sign up' : 'Create User'}}
+  </button>
+
+  <button *ngIf="this.variableService.loginStatus" routerLinkActive="active" (click) = "logOut()" mat-button>Log out</button>
 </mat-card>
